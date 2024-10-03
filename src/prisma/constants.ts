@@ -123,7 +123,7 @@ export const products = [
   // },
 ];
 
-export const Filter = [
+export const filters = [
   {
     numberOfArrows: 1,
     brand: '7цветов',
