@@ -30,6 +30,7 @@ export const products = [
     categoryId: 1,
     characteristicId: 1,
     filterId: 1,
+    popular: true,
   },
   {
     name: "Фаленопсис Грандифлора",
@@ -41,6 +42,7 @@ export const products = [
     categoryId: 1,
     characteristicId: 1,
     filterId: 2,
+    popular: true,
   },
   {
     name: "Фаленопсис мультифлора микс 3 стрелки",
@@ -52,67 +54,94 @@ export const products = [
     categoryId: 1,
     characteristicId: 1,
     filterId: 3,
+    popular: true,
   },
   // "Цветущие растения"
-  // {
-  //   name: "Роза Кордана",
-  //   imageUrl: [
-  //     "https://baucenter.ru/upload/pictures/93/938004314-0.webp?1662134411",
-  //     "https://baucenter.ru/upload/pictures/93/938004314-1.webp?1662134411",
-  //   ],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
-  // {
-  //   name: "Бегония Элатиор",
-  //   imageUrl: [
-  //     "https://baucenter.ru/upload/pictures/93/938002524-0.webp?1677076211",
-  //   ],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
-  // // 3
-  // {
-  //   name: "Азалия Индика",
-  //   imageUrl: ["https://baucenter.ru/upload/pictures/93/938005510-0.webp?1668601811", "https://baucenter.ru/upload/pictures/93/938005510-1.webp?1668601811"],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
-  // // 4
-  // {
-  //   name: "Антуриум Ред",
-  //   imageUrl: ["https://baucenter.ru/upload/pictures/93/938005048-0.webp?1668601809", "https://baucenter.ru/upload/pictures/93/938005048-1.webp?1668601809"],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
-  // // 5
-  // {
-  //   name: "Спатифиллум Шопен",
-  //   imageUrl: ["https://baucenter.ru/upload/pictures/93/938001090-0.webp?1694187014", "https://baucenter.ru/upload/pictures/93/938001090-1.webp?1694187014"],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
-  // // 6
-  // {
-  //   name: "Каланхоэ Каландива",
-  //   imageUrl: ["https://baucenter.ru/upload/pictures/93/938006603-0.webp?1685444413", "https://baucenter.ru/upload/pictures/93/938006603-1.webp?1685444413"],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
-  // // 7
-  // {
-  //   name: "Фиалка",
-  //   imageUrl: ["https://baucenter.ru/upload/pictures/93/938005413-0.webp?1709555431", "https://baucenter.ru/upload/pictures/93/938005413-1.webp?1709555432"],
-  //   description: 2,
-  //   categoryId: 2,
-  //   characteristicId: 2,
-  // },
+  // 1
+  {
+    name: "Роза Кордана",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938004314-0.webp?1662134411",
+      "https://baucenter.ru/upload/pictures/93/938004314-1.webp?1662134411",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    popular: true,
+    filterId: 4,
+  },
+  // 2
+  {
+    name: "Бегония Элатиор",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938002524-0.webp?1677076211",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    popular: true,
+    filterId: 5,
+  },
+  // 3
+  {
+    name: "Азалия Индика",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938005510-0.webp?1668601811",
+      "https://baucenter.ru/upload/pictures/93/938005510-1.webp?1668601811",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    filterId: 6,
+  },
+  // 4
+  {
+    name: "Антуриум Ред",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938005048-0.webp?1668601809",
+      "https://baucenter.ru/upload/pictures/93/938005048-1.webp?1668601809",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    filterId: 7,
+  },
+  // 5
+  {
+    name: "Спатифиллум Шопен",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938001090-0.webp?1694187014",
+      "https://baucenter.ru/upload/pictures/93/938001090-1.webp?1694187014",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    filterId: 8,
+  },
+  // 6
+  {
+    name: "Каланхоэ Каландива",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938006603-0.webp?1685444413",
+      "https://baucenter.ru/upload/pictures/93/938006603-1.webp?1685444413",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    filterId: 9,
+  },
+  // 7
+  {
+    name: "Фиалка",
+    imageUrl: [
+      "https://baucenter.ru/upload/pictures/93/938005413-0.webp?1709555431",
+      "https://baucenter.ru/upload/pictures/93/938005413-1.webp?1709555432",
+    ],
+    descriptionId: 2,
+    categoryId: 2,
+    characteristicId: 2,
+    filterId: 10,
+  },
 
   // {
   //   name: "aaa",
@@ -124,22 +153,75 @@ export const products = [
 ];
 
 export const filters = [
+  // для орхидей
+  // 1
   {
     numberOfArrows: 1,
-    brand: '7цветов',
-    countryOfOrigin: 'Нидерланды',
+    brand: "7цветов",
+    countryOfOrigin: "Нидерланды",
   },
+  // 2
   {
     numberOfArrows: 2,
-    brand: 'GASA',
-    countryOfOrigin: 'Польша',
+    brand: "GASA",
+    countryOfOrigin: "Польша",
   },
+  // 3
   {
     numberOfArrows: 3,
-    brand: 'Агрокомбинат Московский',
-    countryOfOrigin: 'Россия',
+    brand: "Агрокомбинат Московский",
+    countryOfOrigin: "Россия",
   },
-]
+  // для растений
+  // 4
+  {
+    sort: "Азалия",
+    brand: "FLORA",
+    countryOfOrigin: "Россия",
+  },
+  // 5
+  {
+    sort: "Азалия",
+    brand: "FLORA",
+    countryOfOrigin: "Россия",
+  },
+  // 6
+  {
+    sort: "Антуриум",
+    brand: "FLORA",
+    countryOfOrigin: "Нидерланды",
+  },
+  // 7
+  {
+    sort: "Бальзамин",
+    brand: "Waterdrinker",
+    countryOfOrigin: "Сербия",
+  },
+  // 8
+  {
+    sort: "Гардения",
+    brand: "Агрохолдинг Московский",
+    countryOfOrigin: "Россия",
+  },
+  // 9
+  {
+    sort: "Вриезия",
+    brand: "GASA",
+    countryOfOrigin: "Польша",
+  },
+  // 10
+  {
+    sort: "Бромелия",
+    brand: "no name",
+    countryOfOrigin: "Китай",
+  },
+  // 11
+  // {
+  //   sort: "Азалия",
+  //   brand: "FLORA",
+  //   countryOfOrigin: "Россия",
+  // },
+];
 
 export const descriptions = [
   {

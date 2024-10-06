@@ -8,12 +8,13 @@ import {
   filters,
 } from "./constants";
 
-
 const randomDecimalNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10;
 };
 
-
+const generateDiscountPrice = (price: number, percent: number) => {
+  return Math.floor((price * (100 - percent)) / 100);
+};
 
 async function up() {
   await prisma.user.createMany({
@@ -53,8 +54,19 @@ async function up() {
       ...product,
       price: randomDecimalNumber(100, 1000),
     };
-  });
+  }) as ((typeof products)[0] & {
+    discount?: number;
+    discountPrice?: number;
+    price: number;
+  })[];
 
+  for (let i = 5; i < 10; i++) {
+    productsWithPrice[i] = {
+      ...productsWithPrice[i],
+      discount: 25,
+      discountPrice: generateDiscountPrice(productsWithPrice[i].price, 25),
+    };
+  }
   await prisma.product.createMany({
     data: productsWithPrice,
   });

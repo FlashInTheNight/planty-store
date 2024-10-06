@@ -114,7 +114,6 @@ enum OrderStatus {
 model Category {
     id       Int       @id @default(autoincrement())
     name     String    @unique
-    icon     String?
     products Product[]
 
     createdAt DateTime @default(now())
@@ -130,8 +129,10 @@ model Product {
     descriptionId Int
 
     price         Int
+    discount      Int?
     discountPrice Int?
 
+    // Поменять название на isPopular
     popular Boolean? @default(false)
 
     cartItems CartItem[]
@@ -149,7 +150,7 @@ model Product {
     updatedAt DateTime  @updatedAt
     deletedAt DateTime?
 
-    @@index([popular])
+    @@index([popular, discountPrice])
 }
 
 model Description {
@@ -182,6 +183,9 @@ model Filter {
     numberOfArrows  Int?
     brand           String?
     countryOfOrigin String?
+
+    // цветущие растения
+    sort String?
 
     product Product?
 
