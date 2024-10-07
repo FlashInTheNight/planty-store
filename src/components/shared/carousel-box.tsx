@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const CarouselBox = ({ products, className }: Props) => {
-  console.log("products-carousel-box", products);
+  // console.log("products-carousel-box", products);
   return (
     <Carousel className={cn("", className)}>
       <CarouselContent>

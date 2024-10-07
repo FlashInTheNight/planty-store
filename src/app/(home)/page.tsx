@@ -7,7 +7,7 @@ export default async function Home() {
   const categories: Category[] = await findCategories();
   const popularProducts: Product[] = await findPopularProducts();
   const productsWithDiscount: Product[] = await findDiscountProducts();
-  console.log("productsWithDiscount-page", productsWithDiscount);
+  // console.log("productsWithDiscount-page", productsWithDiscount);
 
   return (
     <>

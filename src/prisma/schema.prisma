@@ -179,13 +179,15 @@ model Characteristic {
 model Filter {
     id Int @id @default(autoincrement())
 
-    // орхидеи
-    numberOfArrows  Int?
+    // Орхидеи
+    numberOfArrows Int?
+
+    // Цветущие растения
+    sort String?
+
+    // Общее
     brand           String?
     countryOfOrigin String?
-
-    // цветущие растения
-    sort String?
 
     product Product?
 
