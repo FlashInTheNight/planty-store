@@ -6,3 +6,5 @@ export {
   CarouselPrevious,
 } from "./carousel"
 export { Button } from "./button"
+export { Input } from "./input"
+export { Checkbox } from "./checkbox"
