@@ -1,4 +1,3 @@
-import { CategoryWithProducts } from "@/@types/prisma";
 import { Container, Filters, ProductCard, Title } from "@/components/shared";
 import { findProducts } from "@/lib";
 import { type GetSearchParams } from "@/lib/find-products";
@@ -12,16 +11,7 @@ export default async function CategoryPage({
   searchParams:  GetSearchParams;
 }) {
   const decodedCategory = decodeURIComponent(params.category);
-  // console.log('decodedCategory is:', decodedCategory)
-  // console.log('searchParams is:', searchParams)
-  // console.log('searchParams.searchParams is:', searchParams.searchParams)
-
   const categoryProducts = await findProducts(decodedCategory, searchParams);
-  // console.log("categoryProducts is:", categoryProducts);
-
-  // const filtersArray = categoryProducts?.products.map(
-  //   (product) => product.filters
-  // );
 
   return (
     <>
@@ -31,7 +21,7 @@ export default async function CategoryPage({
         <div className="flex gap-[80px]">
           {/* Фильтрация */}
           <div className="w-[250px]">
-            <Filters currentParam={decodedCategory} />
+            <Filters currentParam={decodedCategory}  />
           </div>
 
           {/* Список товаров */}

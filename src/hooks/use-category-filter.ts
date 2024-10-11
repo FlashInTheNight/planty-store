@@ -1,27 +1,39 @@
+import { transformCategoryFilters } from "@/lib";
 import { Api } from "@/services/api-client";
-import { type CategoryFilters } from "@prisma/client";
 import React from "react";
+
+export interface ReturnProps {
+  categoryFilters: {
+    [k: string]: {
+      value: string;
+      text: string;
+    }[];
+  };
+  loading: boolean;
+}
 
 export const useCategoryFilter = ({
   categoryName,
 }: {
   categoryName: string;
-}): { categoryFilters: CategoryFilters; loading: boolean } => {
-  const [categoryFilters, setCategoryFilters] = React.useState<CategoryFilters>(
-    {} as CategoryFilters
-  );
-  const [loading, setLoading] = React.useState(false);
-  console.log("\x1b[33m%s\x1b[0m", 'zhopech')
+}): ReturnProps => {
+  const [categoryFilters, setCategoryFilters] = React.useState({});
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     async function fetchIngredients() {
       try {
-        console.log("\x1b[33m%s\x1b[0m", 'kek puk')
         setLoading(true);
         const apiCategoryFilters = await Api.categoryFilters.getCategoryFilters(
           categoryName
         );
-        setCategoryFilters(apiCategoryFilters);
+
+        // Преобразуем массивы в объектах в требуемый формат
+        const transformedCategoryFilters =
+          transformCategoryFilters(apiCategoryFilters);
+
+        // Устанавливаем преобразованные данные в состояние
+        setCategoryFilters(transformedCategoryFilters);
       } catch (error) {
         console.log(
           "An error has occurred in the useCategoryFilter method:",
@@ -34,9 +46,6 @@ export const useCategoryFilter = ({
 
     fetchIngredients();
   }, [categoryName]);
-
-
-  console.log('the end')
 
   return {
     categoryFilters,

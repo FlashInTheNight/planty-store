@@ -1,12 +1,13 @@
 import { axiosInstance } from "./instance";
 import { ApiRoutes } from "./constants";
-import { CategoryFilters } from "@prisma/client";
 
 export const getCategoryFilters = async (
   categoryName: string
-): Promise<CategoryFilters> => {
+): Promise<{
+  [key: string]: string[] | number[];
+}> => {
   return (
-    await axiosInstance.get<CategoryFilters>(
+    await axiosInstance.get(
       `${ApiRoutes.CATEGORY_FILTERS}?categoryName=${categoryName}`
     )
   ).data;

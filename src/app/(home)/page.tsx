@@ -7,7 +7,6 @@ export default async function Home() {
   const categories: Category[] = await findCategories();
   const popularProducts: Product[] = await findPopularProducts();
   const productsWithDiscount: Product[] = await findDiscountProducts();
-  // console.log("productsWithDiscount-page", productsWithDiscount);
 
   return (
     <>
@@ -18,10 +17,7 @@ export default async function Home() {
           titleText="Популярные товары"
           products={popularProducts}
         />
-        <CarouselGroup
-          titleText="Скидка дня"
-          products={productsWithDiscount}
-        />
+        <CarouselGroup titleText="Скидка дня" products={productsWithDiscount} />
       </Container>
     </>
   );
