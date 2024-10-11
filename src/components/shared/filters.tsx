@@ -19,21 +19,71 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
 
   const filters = useFilters();
 
+  console.log("categoryFilters", categoryFilters);
+
   useQueryFilters(filters);
 
-  const updatePrices = (prices: number[]) => {
-    filters.setPrices("priceFrom", prices[0]);
-    filters.setPrices("priceTo", prices[1]);
+  // const updatePrices = (prices: number[]) => {
+  //   filters.setPrices("priceFrom", prices[0]);
+  //   filters.setPrices("priceTo", prices[1]);
+  // };
+
+  // console.log('categoryFilters', categoryFilters);
+  // console.log('loading', loading);
+
+  const filtersDictonary: {
+    [key: string]: {
+      name: string;
+      items: Set<string>;
+      onClickCheckbox: (value: string) => void;
+    };
+  } = {
+    numberOfArrows: {
+      name: "Кол-во стрел",
+      items: filters.numberOfArrows,
+      onClickCheckbox: filters.setNumberOfArrows,
+    },
+    sort: {
+      name: "Сортировка",
+      items: filters.sort,
+      onClickCheckbox: filters.setSort,
+    },
+    brand: {
+      name: "Бренд",
+      items: filters.brand,
+      onClickCheckbox: filters.setBrand,
+    },
+    countryOfOrigin: {
+      name: "Страна производства",
+      items: filters.countryOfOrigin,
+      onClickCheckbox: filters.setCountryOfOrigin,
+    },
   };
 
   return (
     <div className={className}>
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
 
-
       {/* Верхние чекбоксы */}
-      {/* Написать конструктор для создания фильтров */}
-      <CheckboxFiltersGroup
+
+      {!loading && Object.entries(categoryFilters).map(([key, value]) => (
+        <CheckboxFiltersGroup
+          key={key}
+          title={filtersDictonary[key as keyof typeof filters]?.name}
+          name={key}
+          className="mt-5"
+          limit={6}
+          defaultItems={value.slice(0, 6)}
+          items={value}
+          loading={loading}
+          onClickCheckbox={
+            filtersDictonary[key as keyof typeof filters]?.onClickCheckbox
+          }
+          selected={filtersDictonary[key as keyof typeof filters].items}
+        />
+      ))}
+
+      {/* <CheckboxFiltersGroup
         title="Ингредиенты"
         name="ingredients"
         className="mt-5"
@@ -43,7 +93,7 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
         loading={loading}
         onClickCheckbox={filters.setSelectedIngredients}
         selected={filters.selectedIngredients}
-      />
+      /> */}
 
       {/* Фильтр цен */}
       {/* <div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">

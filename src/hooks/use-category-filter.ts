@@ -18,7 +18,7 @@ export const useCategoryFilter = ({
   categoryName: string;
 }): ReturnProps => {
   const [categoryFilters, setCategoryFilters] = React.useState({});
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     async function fetchIngredients() {
@@ -31,6 +31,8 @@ export const useCategoryFilter = ({
         // Преобразуем массивы в объектах в требуемый формат
         const transformedCategoryFilters =
           transformCategoryFilters(apiCategoryFilters);
+
+        console.log("transformedCategoryFilters", transformedCategoryFilters);
 
         // Устанавливаем преобразованные данные в состояние
         setCategoryFilters(transformedCategoryFilters);

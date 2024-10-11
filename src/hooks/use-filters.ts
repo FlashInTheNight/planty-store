@@ -19,10 +19,9 @@ export interface Filters {
   sort: Set<string>;
   brand: Set<string>;
   countryOfOrigin: Set<string>;
-  prices: PriceProps;
+  prices?: PriceProps;
 }
-
-interface ReturnProps extends Filters {
+export interface ReturnProps extends Filters {
   setPrices: (name: keyof PriceProps, value: number) => void;
   setNumberOfArrows: (value: string) => void;
   setSort: (value: string) => void;

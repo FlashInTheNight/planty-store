@@ -10,7 +10,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ status: 404, statusText: "not found" });
   }
 
-  const categoryFilters: CategoryFilters | null = await prisma.categoryFilters.findFirst({
+  const categoryFilters: CategoryFilters  | null= await prisma.categoryFilters.findFirst({
     where: {
       name: categoryName,
     },
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const filteredCategoryFilters = Object.fromEntries(
     Object.entries(categoryFilters).filter(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ([_, value]) => !Array.isArray(value) || value.length > 0
+      ([_, value]) => Array.isArray(value) && value.length > 0
     )
   );
 
