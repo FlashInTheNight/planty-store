@@ -4,7 +4,7 @@ import { Product } from "@prisma/client";
 export const findPopularProducts = async (): Promise<Product[]> => {
   return await prisma.product.findMany({
     where: {
-      popular: true,
+      isPopular: true,
     },
   });
 }

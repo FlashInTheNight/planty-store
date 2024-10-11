@@ -1,7 +1,7 @@
 import React from 'react';
-import { Filters } from './use-filters';
 import qs from 'qs';
 import { useRouter } from 'next/navigation';
+import { Filters } from './use-filters';
 
 export const useQueryFilters = (filters: Filters) => {
   const isMounted = React.useRef(false);
@@ -15,15 +15,13 @@ export const useQueryFilters = (filters: Filters) => {
         sort: Array.from(filters.sort),
         brand: Array.from(filters.brand),
         countryOfOrigin: Array.from(filters.countryOfOrigin),
-        // pizzaTypes: Array.from(filters.selectedPizzaTypes),
-        // sizes: Array.from(filters.sizes),
-        // ingredients: Array.from(filters.selectedIngredients),
       };
 
       const query = qs.stringify(params, {
         arrayFormat: 'comma',
       });
 
+      // Возможно, надо будет добавить параметр category
       router.push(`?${query}`, {
         scroll: false,
       });

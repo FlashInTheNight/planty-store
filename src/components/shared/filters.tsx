@@ -5,36 +5,51 @@ import { Title } from "./title";
 // import { Input } from "../ui";
 // import { RangeSlider } from "./range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
-// import { useQueryFilters, useIngredients, useFilters } from "@/shared/hooks";
-import { useFilters } from "@/hooks/use-filters";
-import { Filter } from "@prisma/client";
-import { useQueryFilters } from "@/hooks";
+import { useCategoryFilter, useFilters, useQueryFilters } from "@/hooks";
 
 interface Props {
   className?: string;
-  filtersArray: Filter[];
+  currentParam: string;
 }
 
-export const Filters: React.FC<Props> = ({ className, filtersArray }) => {
-  // const { ingredients, loading } = useIngredients();
+export const Filters: React.FC<Props> = ({ className, currentParam }) => {
+  const { categoryFilters, loading } = useCategoryFilter({
+    categoryName: currentParam,
+  });
+
+  console.log("\x1b[33m%s\x1b[0m", "loading in Filters is: ", loading);
+  // console.log("\x1b[33m%s\x1b[0m", "currentParam in Filters is: ", currentParam);
+  console.log(
+    "\x1b[33m%s\x1b[0m",
+    "categoryFilters in Filters is: ",
+    categoryFilters
+  );
+
   const filters = useFilters();
 
   useQueryFilters(filters);
 
+  // const textItems = categoryFilters?.brand && categoryFilters.brand.map((item) => item);
+
+
+  const items: { value: string; text: string }[] = categoryFilters?.brand &&  categoryFilters.brand.map((item: string, index: number) => ({ value: String(index), text: item}));
+
+  console.log("\x1b[33m%s\x1b[0m", "items in Filters is: ", items);
+
   // const items = ingredients.map((item) => ({ value: String(item.id), text: item.name }));
 
-  const filtersMap = new Map();
+  // const filtersMap = new Map();
 
-  filtersArray.forEach((filterObj) => {
-    Object.entries(filterObj).forEach(([key, value]) => {
-      filtersMap.set(
-        key,
-        filtersMap.has(key) ? [...filtersMap.get(key), value] : [value]
-      );
-    });
-  });
+  // filtersArray.forEach((filterObj) => {
+  //   Object.entries(filterObj).forEach(([key, value]) => {
+  //     filtersMap.set(
+  //       key,
+  //       filtersMap.has(key) ? [...filtersMap.get(key), value] : [value]
+  //     );
+  //   });
+  // });
 
-  const itemsBrands = filtersMap.get('brand') || [];
+  // const itemsBrands = filtersMap.get("brand") || [];
 
   // const updatePrices = (prices: number[]) => {
   //   filters.setPrices("priceFrom", prices[0]);
@@ -45,6 +60,7 @@ export const Filters: React.FC<Props> = ({ className, filtersArray }) => {
     <div className={className}>
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
 
+
       {/* Верхние чекбоксы */}
       <CheckboxFiltersGroup
         title="Бренд"
@@ -52,7 +68,7 @@ export const Filters: React.FC<Props> = ({ className, filtersArray }) => {
         className="mb-5"
         onClickCheckbox={filters.setBrand}
         selected={filters.brand}
-        items={itemsBrands}
+        items={items || []}
       />
 
       {/* <CheckboxFiltersGroup

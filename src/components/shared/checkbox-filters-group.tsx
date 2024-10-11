@@ -33,7 +33,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   selected,
   name,
 }) => {
-  const [showAll, setShowAll] = React.useState(false);
+  const [showAll, setShowAll] = React.useState(true);
   // const [searchValue, setSearchValue] = React.useState('');
 
   // const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,9 +54,11 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   //   );
   // }
 
-  const list = showAll
-    ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()))
-    : (defaultItems || items).slice(0, limit);
+  const list = items
+
+  // const list = showAll
+  //   ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()))
+  //   : (defaultItems || items).slice(0, limit);
 
   return (
     <div className={className}>
@@ -76,13 +78,11 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
         {list.map((item, index) => (
           <FilterCheckbox
             key={index}
-            // text={item.text}
-            // value={item.value}
-            text={String(item)}
-            value={String(item)}
+            text={item.text}
+            value={item.value}
             endAdornment={item.endAdornment}
-            checked={selected?.has(String(item))}
-            onCheckedChange={() => onClickCheckbox?.(String(item))}
+            checked={selected?.has(String(item.text))}
+            onCheckedChange={() => onClickCheckbox?.(String(item.text))}
             name={name}
           />
         ))}

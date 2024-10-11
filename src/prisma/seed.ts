@@ -6,6 +6,7 @@ import {
   characteristics,
   products,
   filters,
+  categoryFilters,
 } from "./constants";
 
 const randomDecimalNumber = (min: number, max: number) => {
@@ -48,6 +49,9 @@ async function up() {
   await prisma.filter.createMany({
     data: filters,
   });
+  await prisma.categoryFilters.createMany({
+    data: categoryFilters,
+  });
 
   const productsWithPrice = products.map((product) => {
     return {
@@ -78,6 +82,8 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Description" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Characteristic" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Filter" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "CategoryFilters" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {

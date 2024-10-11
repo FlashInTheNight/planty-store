@@ -115,6 +115,29 @@ model Category {
     id       Int       @id @default(autoincrement())
     name     String    @unique
     products Product[]
+    // categoryFilters   CategoryFilters @relation(fields: [categoryFiltersId], references: [id])
+    // categoryFiltersId Int             @unique
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model CategoryFilters {
+    id Int @id @default(autoincrement())
+
+    name String
+
+    // Орхидеи
+    numberOfArrows Int[]
+
+    // Цветущие растения
+    sort String[]
+
+    // Общее
+    brand           String[]
+    countryOfOrigin String[]
+
+    // category Category?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -132,8 +155,7 @@ model Product {
     discount      Int?
     discountPrice Int?
 
-    // Поменять название на isPopular
-    popular Boolean? @default(false)
+    isPopular Boolean? @default(false)
 
     cartItems CartItem[]
 
@@ -150,7 +172,7 @@ model Product {
     updatedAt DateTime  @updatedAt
     deletedAt DateTime?
 
-    @@index([popular, discountPrice])
+    @@index([isPopular, discountPrice])
 }
 
 model Description {

@@ -97,5 +97,5 @@ export const findProducts = async (
   //     // },
   //   },
   // });
-  return categoryProducts;
+  return categoryProducts?.products;
 };

@@ -30,7 +30,7 @@ export const products = [
     categoryId: 1,
     characteristicId: 1,
     filterId: 1,
-    popular: true,
+    isPopular: true,
   },
   {
     name: "Фаленопсис Грандифлора",
@@ -42,7 +42,7 @@ export const products = [
     categoryId: 1,
     characteristicId: 1,
     filterId: 2,
-    popular: true,
+    isPopular: true,
   },
   {
     name: "Фаленопсис мультифлора микс 3 стрелки",
@@ -54,7 +54,7 @@ export const products = [
     categoryId: 1,
     characteristicId: 1,
     filterId: 3,
-    popular: true,
+    isPopular: true,
   },
   // "Цветущие растения"
   // 1
@@ -67,7 +67,7 @@ export const products = [
     descriptionId: 2,
     categoryId: 2,
     characteristicId: 2,
-    popular: true,
+    isPopular: true,
     filterId: 4,
   },
   // 2
@@ -79,7 +79,7 @@ export const products = [
     descriptionId: 2,
     categoryId: 2,
     characteristicId: 2,
-    popular: true,
+    isPopular: true,
     filterId: 5,
   },
   // 3
@@ -222,6 +222,21 @@ export const filters = [
   //   countryOfOrigin: "Россия",
   // },
 ];
+
+export const categoryFilters = [
+  {
+    name: "Орхидеи",
+    numberOfArrows:   [1, 2, 3],
+    brand: ["7цветов", "GASA", "Агрокомбинат Московский"],
+    countryOfOrigin: ["Нидерланды", "Польша", "Россия"],
+  },
+  // {
+  //   name: "Цветущие растения",
+  //   sort: ["Азалия", "Антуриум", "Бальзамин", "Гардения", "Вриезия", "Бромелия"],
+  //   brand: ["FLORA", "Waterdrinker", "Агрохолдинг Московский", "GASA"],
+  //   countryOfOrigin: ["Россия", "Нидерланды", "Сербия", "Китай"],
+  // },
+]
 
 export const descriptions = [
   {

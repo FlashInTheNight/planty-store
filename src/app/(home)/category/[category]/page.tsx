@@ -1,27 +1,27 @@
 import { CategoryWithProducts } from "@/@types/prisma";
 import { Container, Filters, ProductCard, Title } from "@/components/shared";
 import { findProducts } from "@/lib";
-import { GetSearchParams } from "@/lib/find-products";
+import { type GetSearchParams } from "@/lib/find-products";
 // import { Filter, Product } from "@prisma/client";
 
 export default async function CategoryPage({
   params,
   searchParams,
-}: // searchParams,
-{
+}: {
   params: { category: string };
-  searchParams: { searchParams: GetSearchParams};
+  searchParams:  GetSearchParams;
 }) {
   const decodedCategory = decodeURIComponent(params.category);
-  const categoryProducts: CategoryWithProducts | null = await findProducts(
-    decodedCategory,
-    searchParams
-  );
-  // console.log("categoryProducts", categoryProducts);
+  // console.log('decodedCategory is:', decodedCategory)
+  // console.log('searchParams is:', searchParams)
+  // console.log('searchParams.searchParams is:', searchParams.searchParams)
 
-  const filtersArray = categoryProducts?.products.map(
-    (product) => product.filters
-  );
+  const categoryProducts = await findProducts(decodedCategory, searchParams);
+  // console.log("categoryProducts is:", categoryProducts);
+
+  // const filtersArray = categoryProducts?.products.map(
+  //   (product) => product.filters
+  // );
 
   return (
     <>
@@ -31,13 +31,13 @@ export default async function CategoryPage({
         <div className="flex gap-[80px]">
           {/* Фильтрация */}
           <div className="w-[250px]">
-            <Filters filtersArray={filtersArray || []} />
+            <Filters currentParam={decodedCategory} />
           </div>
 
           {/* Список товаров */}
           <div className="flex-1">
             <div className="flex flex-wrap gap-16">
-              {categoryProducts?.products.map((product) => (
+              {categoryProducts?.map((product) => (
                 <ProductCard {...product} key={product.id} />
               ))}
             </div>
