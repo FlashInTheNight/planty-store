@@ -51,12 +51,6 @@ export const useFilters = (): ReturnProps => {
     new Set<string>(searchParams.get("countryOfOrigin")?.split(","))
   );
 
-  // const [pizzaTypes, { toggle: togglePizzaTypes }] = useSet(
-  //   new Set<string>(
-  //     searchParams.has('pizzaTypes') ? searchParams.get('pizzaTypes')?.split(',') : [],
-  //   ),
-  // );
-
   const [prices, setPrices] = React.useState<PriceProps>({
     priceFrom: Number(searchParams.get("priceFrom")) || undefined,
     priceTo: Number(searchParams.get("priceTo")) || undefined,
@@ -90,18 +84,4 @@ export const useFilters = (): ReturnProps => {
       prices,
     ]
   );
-
-  // return React.useMemo(
-  //   () => ({
-  //     sizes,
-  //     pizzaTypes,
-  //     selectedIngredients,
-  //     prices,
-  //     setPrices: updatePrice,
-  //     setPizzaTypes: togglePizzaTypes,
-  //     setSizes: toggleSizes,
-  //     setSelectedIngredients: toggleIngredients,
-  //   }),
-  //   [sizes, pizzaTypes, selectedIngredients, prices],
-  // );
 };
