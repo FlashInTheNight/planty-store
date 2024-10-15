@@ -1,7 +1,6 @@
-import { Category, Filter, Product } from "@prisma/client";
+import { Characteristic, Description, Product } from "@prisma/client";
 
-export type CategoryWithProductsAndFilters = Category & {
-  products: Product[] & {
-    filters: Filter[];
-  };
+export type ProductWithRelations = Product & {
+  description: Description;
+  characteristic: Characteristic;
 };

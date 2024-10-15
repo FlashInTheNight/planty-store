@@ -10,3 +10,8 @@ export { ProductCardPrice } from "./product-card-price"
 export { ProductCard } from "./product-card"
 export { CustomButton } from "./custom-buttom"
 export { Filters } from "./filters"
+export { ProductForm } from "./product-form"
+export { ChooseProductForm } from "./choose-product-form"
+export { CarouselProduct } from "./carousel-product"
+
+export * from "./modals"
