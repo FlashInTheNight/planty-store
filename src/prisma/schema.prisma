@@ -1,5 +1,6 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["omitApi"]
 }
 
 datasource db {
@@ -189,10 +190,10 @@ model Characteristic {
 
     product Product[]
 
-    lighting    String
-    temperature String
-    watering    String
-    soil        String
+    lighting    String?
+    temperature String?
+    watering    String?
+    soil        String?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

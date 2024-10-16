@@ -15,6 +15,8 @@ interface Props {
 export const ProductModal: React.FC<Props> = ({ product, className }) => {
   const router = useRouter();
 
+  console.log("product in ProductModal: ", product);
+
   return (
     <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
       <DialogContent

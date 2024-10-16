@@ -13,5 +13,6 @@ export { Filters } from "./filters"
 export { ProductForm } from "./product-form"
 export { ChooseProductForm } from "./choose-product-form"
 export { CarouselProduct } from "./carousel-product"
+export { AccordionBox } from "./accordion-box"
 
 export * from "./modals"

@@ -21,5 +21,35 @@ export default async function ProductModalPage({
     return notFound();
   }
 
-  return <ProductModal product={product} />;
+    /**
+   * Функция для исключения указанных полей из объекта.
+   *
+   * @param obj The object to omit fields from.
+   * @param fields The fields to omit.
+   * @returns A new object with the specified fields omitted.
+   */
+  function omitFields<T extends Record<string, unknown>>(
+    obj: T,
+    fields: string[]
+  ): Omit<T, keyof typeof fields> {
+    const result = { ...obj };
+    fields.forEach((field) => {
+      delete result[field];
+    });
+    return result;
+  }
+
+  // Исключаем поля id, createdAt, updatedAt
+  const sanitizedCharacteristic = omitFields(product.characteristic, [
+    "id",
+    "createdAt",
+    "updatedAt",
+  ]);
+  
+  const filteredProduct = {
+    ...product,
+    characteristic: sanitizedCharacteristic,
+  };
+
+  return <ProductModal product={filteredProduct} />;
 }

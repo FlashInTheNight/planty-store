@@ -46,6 +46,8 @@ export const ProductForm: React.FC<Props> = ({
       price={product.price}
       // loading={loading}
       loading={false}
+      characteristic={product.characteristic}
+      description={product.description}
     />
   );
 };
