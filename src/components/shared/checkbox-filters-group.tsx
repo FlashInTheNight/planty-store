@@ -25,10 +25,10 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   title,
   items,
   defaultItems,
-  limit = 5,
+  limit = 4,
   searchInputPlaceholder = "Поиск...",
   className,
-  loading,
+  // loading,
   onClickCheckbox,
   selected,
   name,
@@ -40,22 +40,21 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
     setSearchValue(e.target.value);
   };
 
-  if (loading) {
-    return (
-      <div className={className}>
-        <p className="font-bold mb-3">{title}</p>
+  // if (loading) {
+  //   return (
+  //     <div className={className}>
+  //       <p className="font-bold mb-3">{title}</p>
 
-        {...Array(limit)
-          .fill(0)
-          .map((_, index) => (
-            // <Skeleton key={index} className="h-6 mb-4 rounded-[8px]" />
-            <div key={index}>{index}</div>
-          ))}
+  //       {...Array(limit)
+  //         .fill(0)
+  //         .map((_, index) => (
+  //           <Skeleton key={index} className="h-6 mb-4 rounded-[8px]" />
+  //         ))}
 
-        {/* <Skeleton className="w-28 h-6 mb-4 rounded-[8px]" /> */}
-      </div>
-    );
-  }
+  //       <Skeleton className="w-28 h-6 mb-4 rounded-[8px]" />
+  //     </div>
+  //   );
+  // }
 
   const list = showAll
     ? items.filter((item) =>

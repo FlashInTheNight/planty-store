@@ -15,3 +15,4 @@ export {
   AccordionItem,
   AccordionTrigger,
 } from "./accordion"
+export { Skeleton } from "./skeleton"

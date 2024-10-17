@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
 import { Title } from "./title";
 import { Input } from "../ui";
 import { RangeSlider } from "./range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
 import { useCategoryFilter, useFilters, useQueryFilters } from "@/hooks";
+import { FilterSkeleton } from "./filter-skeleton";
 
 interface Props {
   className?: string;
@@ -16,6 +16,8 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
   const { categoryFilters, loading } = useCategoryFilter({
     categoryName: currentParam,
   });
+
+  console.log("loading in Filters: ", loading);
 
   const filters = useFilters();
 
@@ -65,29 +67,34 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
     },
   };
 
+  if (loading) {
+    return (
+      <FilterSkeleton />
+    );
+  }
+
   return (
     <div className={className}>
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
 
       {/* Верхние чекбоксы */}
 
-      {!loading &&
-        Object.entries(categoryFilters).map(([key, value]) => (
+      {Object.entries(categoryFilters).map(([key, value]) => (
           <CheckboxFiltersGroup
             key={key}
             title={filtersDictonary[key as keyof typeof filters]?.name}
             name={key}
             className="mt-5"
-            limit={6}
+            limit={4}
             defaultItems={value?.slice(0, 6)}
             items={value}
-            loading={loading}
+            // loading={loading}
             onClickCheckbox={
               filtersDictonary[key as keyof typeof filters]?.onClickCheckbox
             }
             selected={filtersDictonary[key as keyof typeof filters].items}
           />
-        ))}
+      ))}
 
       {/* Фильтр цен */}
       <div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">
