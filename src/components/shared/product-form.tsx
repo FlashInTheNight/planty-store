@@ -44,6 +44,7 @@ export const ProductForm: React.FC<Props> = ({
       // onSubmit={onSubmit}
       onSubmit={_onSubmit}
       price={product.price}
+      discountPrice={product.discountPrice}
       // loading={loading}
       loading={false}
       characteristic={product.characteristic}

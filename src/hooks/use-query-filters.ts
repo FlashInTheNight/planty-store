@@ -15,6 +15,8 @@ export const useQueryFilters = (filters: Filters) => {
         sort: Array.from(filters.sort),
         brand: Array.from(filters.brand),
         countryOfOrigin: Array.from(filters.countryOfOrigin),
+        material: Array.from(filters.material),
+        type: Array.from(filters.type),
       };
 
       const query = qs.stringify(params, {

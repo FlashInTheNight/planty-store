@@ -17,7 +17,7 @@ export const CarouselGroup: React.FC<Props> = ({
   return (
     <div className={cn("my-10", className)}>
       <Title text={titleText} size="lg" />
-      <CarouselBox products={products} className="mt-6" />
+      <CarouselBox products={products} className="mt-6 " />
     </div>
   );
 };

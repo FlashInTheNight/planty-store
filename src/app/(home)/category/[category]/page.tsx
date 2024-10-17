@@ -26,7 +26,7 @@ export default async function CategoryPage({
 
           {/* Список товаров */}
           <div className="flex-1">
-            <div className="flex flex-wrap gap-16">
+            <div className="flex flex-wrap gap-11">
               {categoryProducts?.map((product) => (
                 <ProductCard {...product} key={product.id} />
               ))}

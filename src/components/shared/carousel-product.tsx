@@ -18,7 +18,7 @@ export const CarouselProduct: React.FC<Props> = ({ imageUrls, className }) => {
       <Carousel className={cn("", className)}>
         <CarouselContent>
           {imageUrls.map((imageUrl, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="h-[600px]">
               <img
                 src={imageUrl}
                 alt={`Image ${index + 1}`}

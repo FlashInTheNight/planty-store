@@ -26,8 +26,8 @@ export const CarouselBox = ({ products, className }: Props) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="h-10 w-10 border-destructive" />
+      <CarouselNext className="h-10 w-10 border-destructive" />
     </Carousel>
   );
 };

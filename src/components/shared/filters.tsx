@@ -53,6 +53,16 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
       items: filters.countryOfOrigin,
       onClickCheckbox: filters.setCountryOfOrigin,
     },
+    material: {
+      name: "Материал",
+      items: filters.material,
+      onClickCheckbox: filters.setMaterial,
+    },
+    type: {
+      name: "Тип",
+      items: filters.type,
+      onClickCheckbox: filters.setType,
+    },
   };
 
   return (
@@ -69,7 +79,7 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
             name={key}
             className="mt-5"
             limit={6}
-            defaultItems={value.slice(0, 6)}
+            defaultItems={value?.slice(0, 6)}
             items={value}
             loading={loading}
             onClickCheckbox={

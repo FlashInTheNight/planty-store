@@ -116,8 +116,6 @@ model Category {
     id       Int       @id @default(autoincrement())
     name     String    @unique
     products Product[]
-    // categoryFilters   CategoryFilters @relation(fields: [categoryFiltersId], references: [id])
-    // categoryFiltersId Int             @unique
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -137,6 +135,8 @@ model CategoryFilters {
     // Общее
     brand           String[]
     countryOfOrigin String[]
+    type            String[]
+    material        String[]
 
     // category Category?
 
@@ -195,6 +195,15 @@ model Characteristic {
     watering    String?
     soil        String?
 
+    // Горшки
+    material String?
+    diameter String?
+    height   String?
+    volume   String?
+
+    // Общее
+    type     String?
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
@@ -208,9 +217,13 @@ model Filter {
     // Цветущие растения
     sort String?
 
+    // Горшки
+    material String?
+
     // Общее
     brand           String?
     countryOfOrigin String?
+    type            String?
 
     product Product?
 

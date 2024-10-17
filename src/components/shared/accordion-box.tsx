@@ -16,12 +16,20 @@ export const AccordionBox: React.FC<Props> = ({
   className,
   characteristic,
 }) => {
+  const filteredCharacteristic = Object.fromEntries(
+    Object.entries(characteristic).filter(([, value]) => value)
+  );
+
   return (
     <Accordion type="single" collapsible className={className}>
-      {Object.entries(characteristic).map(([key, value]) => (
+      {Object.entries(filteredCharacteristic).map(([key, value]) => (
         <AccordionItem key={key} value={key}>
           <AccordionTrigger>
-            {CharacteristicDictonary[key as keyof typeof CharacteristicDictonary]}
+            {
+              CharacteristicDictonary[
+                key as keyof typeof CharacteristicDictonary
+              ]
+            }
           </AccordionTrigger>
           <AccordionContent>{value}</AccordionContent>
         </AccordionItem>

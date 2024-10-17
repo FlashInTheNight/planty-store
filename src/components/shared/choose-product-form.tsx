@@ -10,6 +10,7 @@ interface Props {
   imageUrl: string[];
   name: string;
   price: number;
+  discountPrice?: number | null;
   loading?: boolean;
   onSubmit?: VoidFunction;
   className?: string;
@@ -31,6 +32,7 @@ export const ChooseProductForm: React.FC<Props> = ({
   loading = false,
   characteristic,
   description,
+  discountPrice,
 }) => {
   console.log("description in ChooseProductForm: ", description);
   return (
@@ -51,7 +53,7 @@ export const ChooseProductForm: React.FC<Props> = ({
           onClick={() => onSubmit?.()}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-5"
         >
-          Добавить в корзину за {price} ₽
+          Добавить в корзину за {discountPrice ?? price} ₽
         </CustomButton>
       </div>
     </div>

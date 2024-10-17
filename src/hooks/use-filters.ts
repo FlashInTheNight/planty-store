@@ -12,6 +12,8 @@ interface QueryFilters extends PriceProps {
   sort: string;
   brand: string;
   countryOfOrigin: string;
+  material: string;
+  type: string;
 }
 
 export interface Filters {
@@ -19,6 +21,8 @@ export interface Filters {
   sort: Set<string>;
   brand: Set<string>;
   countryOfOrigin: Set<string>;
+  material: Set<string>;
+  type: Set<string>;
   prices?: PriceProps;
 }
 export interface ReturnProps extends Filters {
@@ -27,6 +31,8 @@ export interface ReturnProps extends Filters {
   setSort: (value: string) => void;
   setBrand: (value: string) => void;
   setCountryOfOrigin: (value: string) => void;
+  setMaterial: (value: string) => void;
+  setType: (value: string) => void;
 }
 
 export const useFilters = (): ReturnProps => {
@@ -51,6 +57,14 @@ export const useFilters = (): ReturnProps => {
     new Set<string>(searchParams.get("countryOfOrigin")?.split(","))
   );
 
+  const [selectedMaterial, { toggle: toggleMaterial }] = useSet(
+    new Set<string>(searchParams.get("material")?.split(","))
+  );
+
+  const [selectedType, { toggle: toggleType }] = useSet(
+    new Set<string>(searchParams.get("type")?.split(","))
+  );
+
   const [prices, setPrices] = React.useState<PriceProps>({
     priceFrom: Number(searchParams.get("priceFrom")) || undefined,
     priceTo: Number(searchParams.get("priceTo")) || undefined,
@@ -69,12 +83,16 @@ export const useFilters = (): ReturnProps => {
       sort: selectedSort,
       brand: selectedBrand,
       countryOfOrigin: selectedCountryOfOrigin,
+      material: selectedMaterial,
+      type: selectedType,
       prices,
       setPrices: updatePrice,
       setNumberOfArrows: toggleNumberOfArrows,
       setSort: toggleSort,
       setBrand: toggleBrand,
       setCountryOfOrigin: toggleCountryOfOrigin,
+      setMaterial: toggleMaterial,
+      setType: toggleType,
     }),
     [
       selectedNumberOfArrows,
@@ -82,6 +100,8 @@ export const useFilters = (): ReturnProps => {
       selectedBrand,
       selectedCountryOfOrigin,
       prices,
+      selectedMaterial,
+      selectedType,
     ]
   );
 };

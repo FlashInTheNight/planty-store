@@ -1,12 +1,18 @@
 import { prisma } from "@/prisma/prisma-client";
-import { Prisma } from "@prisma/client";
+import { Filter, Prisma } from "@prisma/client";
 
-export interface GetSearchParams {
+// export interface GetSearchParams {
+//   numberOfArrows?: string;
+//   sort?: string;
+//   brand?: string;
+//   countryOfOrigin?: string;
+
+//   priceFrom?: string;
+//   priceTo?: string;
+// }
+
+export interface GetSearchParams extends Omit<Filter, "numberOfArrows"> {
   numberOfArrows?: string;
-  sort?: string;
-  brand?: string;
-  countryOfOrigin?: string;
-
   priceFrom?: string;
   priceTo?: string;
 }
@@ -22,12 +28,14 @@ export const findProducts = async (
   const sort = searchParams.sort?.split(",").map(String);
   const brands = searchParams.brand?.split(",").map(String);
   const countryOfOrigin = searchParams.countryOfOrigin?.split(",").map(String);
+  const material = searchParams.material?.split(",").map(String);
+  const type = searchParams.type?.split(",").map(String);
 
   const minPrice = Number(searchParams.priceFrom) || DEFAULT_MIN_PRICE;
   const maxPrice = Number(searchParams.priceTo) || DEFAULT_MAX_PRICE;
 
-  console.log('minPrice', minPrice);
-  console.log('maxPrice', maxPrice);
+  console.log("minPrice", minPrice);
+  console.log("maxPrice", maxPrice);
 
   const filterConditions = [
     // Фильтр по брендам
@@ -69,6 +77,28 @@ export const findProducts = async (
           filters: {
             sort: {
               in: sort, // Фильтрация по сортам
+            },
+          },
+        }
+      : undefined,
+
+    // Фильтр по материалам
+    material && material.length
+      ? {
+          filters: {
+            material: {
+              in: material, // Фильтрация по материалам
+            },
+          },
+        }
+      : undefined,
+
+    // Фильтр по типам
+    type && type.length
+      ? {
+          filters: {
+            type: {
+              in: type, // Фильтрация по типам
             },
           },
         }
