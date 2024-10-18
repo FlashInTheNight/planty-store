@@ -6,11 +6,11 @@ import { Container } from "./container";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from './search-input';
-// import { CartButton } from './cart-button';
-// import { useRouter, useSearchParams } from "next/navigation";
-// import toast from 'react-hot-toast';
-// import { ProfileButton } from './profile-button';
-// import { AuthModal } from './modals';
+import { CartButton } from './cart-button';
+import { useRouter, useSearchParams } from "next/navigation";
+import toast from 'react-hot-toast';
+import { ProfileButton } from './profile-button';
+import { AuthModal } from './modals';
 
 interface Props {
   hasSearch?: boolean;
@@ -20,7 +20,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({
   hasSearch = true,
-  // hasCart = true,
+  hasCart = true,
   className,
 }) => {
   // const router = useRouter();
@@ -72,13 +72,13 @@ export const Header: React.FC<Props> = ({
         )}
 
         {/* Правая часть */}
-        {/* <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
 
           <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
 
           {hasCart && <CartButton />}
-        </div> */}
+        </div>
       </Container>
     </header>
   );

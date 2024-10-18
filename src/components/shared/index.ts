@@ -15,5 +15,7 @@ export { ChooseProductForm } from "./choose-product-form"
 export { CarouselProduct } from "./carousel-product"
 export { AccordionBox } from "./accordion-box"
 export { FilterSkeleton } from "./filter-skeleton"
+export { CartButton } from "./cart-button"
+export { Providers } from "./providers"
 
 export * from "./modals"

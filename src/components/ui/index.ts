@@ -16,3 +16,14 @@ export {
   AccordionTrigger,
 } from "./accordion"
 export { Skeleton } from "./skeleton"
+export {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetClose,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+

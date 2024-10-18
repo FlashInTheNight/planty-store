@@ -54,7 +54,7 @@ model Cart {
 
     token String
 
-    totalAmount Decimal @default(0.00)
+    totalAmount Int @default(0)
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
@@ -202,7 +202,7 @@ model Characteristic {
     volume   String?
 
     // Общее
-    type     String?
+    type String?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
