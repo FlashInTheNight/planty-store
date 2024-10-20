@@ -10,14 +10,14 @@ import {
   CheckoutAddressForm,
   CheckoutCart,
   CheckoutPersonalForm,
-} from '@/shared/components';
-import { CheckoutFormValues, checkoutFormSchema } from '@/shared/constants';
-import { useCart } from '@/shared/hooks';
+} from '@/components/shared';
+import { CheckoutFormValues, checkoutFormSchema } from '@/constants';
+import { useCart } from '@/hooks';
 import { createOrder } from '@/app/actions';
 import toast from 'react-hot-toast';
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import { Api } from '@/shared/services/api-client';
+import { Api } from '@/services/api-client';
 
 export default function CheckoutPage() {
   const [submitting, setSubmitting] = React.useState(false);

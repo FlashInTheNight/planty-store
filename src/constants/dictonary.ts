@@ -8,4 +8,9 @@ export const CharacteristicDictonary: Record<
   temperature: "Температура",
   watering: "Полив",
   soil: "Почва",
+  material: "Материал",
+  type: "Тип",
+  diameter: "Диаметр",
+  height: "Высота",
+  volume: "Объём",
 };

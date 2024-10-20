@@ -24,7 +24,6 @@ export const ProductCard: React.FC<Props> = ({
   imageUrl,
   className,
 }) => {
-  // console.log("discountPrice", discountPrice );
   return (
     <div className={cn("cursor-pointer", className)}>
       <Link

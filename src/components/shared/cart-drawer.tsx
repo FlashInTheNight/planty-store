@@ -16,8 +16,6 @@ import Link from "next/link";
 import { Button } from "../ui";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CartDrawerItem } from "./cart-drawer-item";
-// import { getCartItemDetails } from "@/lib";
-// import { PizzaSize, PizzaType } from "@/shared/constants/pizza";
 import { Title } from "./title";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/hooks";

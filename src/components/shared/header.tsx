@@ -23,31 +23,31 @@ export const Header: React.FC<Props> = ({
   hasCart = true,
   className,
 }) => {
-  // const router = useRouter();
-  // const [openAuthModal, setOpenAuthModal] = React.useState(false);
+  const router = useRouter();
+  const [openAuthModal, setOpenAuthModal] = React.useState(false);
 
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
-  // React.useEffect(() => {
-  //   let toastMessage = "";
+  React.useEffect(() => {
+    let toastMessage = "";
 
-  //   if (searchParams.has("paid")) {
-  //     toastMessage = "Заказ успешно оплачен! Информация отправлена на почту.";
-  //   }
+    if (searchParams.has("paid")) {
+      toastMessage = "Заказ успешно оплачен! Информация отправлена на почту.";
+    }
 
-  //   if (searchParams.has("verified")) {
-  //     toastMessage = "Почта успешно подтверждена!";
-  //   }
+    if (searchParams.has("verified")) {
+      toastMessage = "Почта успешно подтверждена!";
+    }
 
-  //   if (toastMessage) {
-  //     setTimeout(() => {
-  //       router.replace("/");
-  //       toast.success(toastMessage, {
-  //         duration: 3000,
-  //       });
-  //     }, 1000);
-  //   }
-  // }, []);
+    if (toastMessage) {
+      setTimeout(() => {
+        router.replace("/");
+        toast.success(toastMessage, {
+          duration: 3000,
+        });
+      }, 1000);
+    }
+  }, []);
 
   return (
     <header className={cn("border-b-2 border-destructive/75", className)}>

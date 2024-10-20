@@ -2,7 +2,6 @@ import { Container, Filters, ProductCard, Title } from "@/components/shared";
 import { findProducts } from "@/lib";
 import { type GetSearchParams } from "@/lib/find-products";
 import { Suspense } from "react";
-// import { Filter, Product } from "@prisma/client";
 
 export default async function CategoryPage({
   params,

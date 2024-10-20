@@ -1,5 +1,6 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/shared";
 
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
@@ -15,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className}`}>{children}</body>
+      <body className={`${montserrat.className}`}><Providers>{children}</Providers></body>
     </html>
   );
 }

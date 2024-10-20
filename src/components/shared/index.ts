@@ -17,5 +17,7 @@ export { AccordionBox } from "./accordion-box"
 export { FilterSkeleton } from "./filter-skeleton"
 export { CartButton } from "./cart-button"
 export { Providers } from "./providers"
+export { CheckoutSidebar } from "./checkout-sidebar"
 
+export * from './checkout'
 export * from "./modals"
