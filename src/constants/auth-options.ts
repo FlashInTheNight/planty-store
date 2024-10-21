@@ -50,8 +50,6 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        // const isPasswordValid = await compare(credentials.password, findUser.password);
-
         const isPasswordValid = await argon.verify(findUser.password, credentials.password);
 
         if (!isPasswordValid) {

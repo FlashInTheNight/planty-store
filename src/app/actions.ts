@@ -166,7 +166,6 @@ export async function registerUser(body: Prisma.UserCreateInput) {
       data: {
         fullName: body.fullName,
         email: body.email,
-        // password: hashSync(body.password, 10),
         password: await argon.hash(body.password),
       },
     });

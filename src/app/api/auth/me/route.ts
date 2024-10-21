@@ -1,17 +1,18 @@
-import { prisma } from '@/prisma/prisma-client';
-import { authOptions } from '@/constants/auth-options';
-import { getServerSession } from 'next-auth/next';
-import {  NextResponse } from 'next/server';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from "@/prisma/prisma-client";
+import { authOptions } from "@/constants/auth-options";
+import { getServerSession } from "next-auth/next";
+import { NextResponse } from "next/server";
+export const dynamic = "force-dynamic";
 
-export const dynamic = 'force-dynamic';
-
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
   try {
-    const user = await getServerSession(req, res, authOptions);
+    const user = await getServerSession(authOptions);
 
     if (!user) {
-      return NextResponse.json({ message: 'Вы не авторизованы' }, { status: 401 });
+      return NextResponse.json(
+        { message: "Вы не авторизованы" },
+        { status: 401 }
+      );
     }
 
     const data = await prisma.user.findUnique({
@@ -28,6 +29,10 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
     return NextResponse.json(data);
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: '[USER_GET] Server error' }, { status: 500 });
+    // return NextResponse.json({ message: '[USER_GET] Server error' }, { status: 500 });
+    return NextResponse.json(
+      { message: `Error in api/auth/me is:  ${error}` },
+      { status: 500 }
+    );
   }
 }
