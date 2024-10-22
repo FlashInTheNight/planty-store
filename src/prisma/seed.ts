@@ -74,6 +74,54 @@ async function up() {
   await prisma.product.createMany({
     data: productsWithPrice,
   });
+
+  await prisma.story.createMany({
+    data: [
+      {
+        previewImageUrl: "/stories/preview/stories-preview-1.jpeg",
+      },
+      {
+        previewImageUrl: "/stories/preview/stories-preview-2.jpeg",
+      },
+      {
+        previewImageUrl: "/stories/preview/stories-preview-3.jpeg",
+      },
+      {
+        previewImageUrl: "/stories/preview/stories-preview-4.jpeg",
+      },
+      {
+        previewImageUrl: "/stories/preview/stories-preview-5.jpeg",
+      },
+      {
+        previewImageUrl: "/stories/preview/stories-preview-6.png",
+      },
+    ],
+  });
+
+  await prisma.storyItem.createMany({
+    data: [
+      {
+        storyId: 1,
+        sourceUrl: "/stories/story/story-1.avif",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/story/story-2.avif",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/story/story-3.avif",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/story/story-4.avif",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/story/story-5.avif",
+      },
+    ],
+  });
 }
 
 async function down() {
@@ -84,6 +132,10 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Filter" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "CategoryFilters" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Story" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "StoryItem" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {

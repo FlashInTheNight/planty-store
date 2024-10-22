@@ -18,6 +18,7 @@ export { FilterSkeleton } from "./filter-skeleton"
 export { CartButton } from "./cart-button"
 export { Providers } from "./providers"
 export { CheckoutSidebar } from "./checkout-sidebar"
+export { Stories } from "./stories"
 
 export * from './checkout'
 export * from "./modals"

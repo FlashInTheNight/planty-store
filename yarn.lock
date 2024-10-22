@@ -4424,6 +4424,7 @@ __metadata:
     react-dom: "npm:^18"
     react-hook-form: "npm:^7.53.1"
     react-hot-toast: "npm:^2.4.1"
+    react-insta-stories: "npm:^2.7.0"
     react-use: "npm:^17.5.1"
     resend: "npm:^4.0.0"
     tailwind-merge: "npm:^2.5.3"
@@ -4692,6 +4693,15 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 10c0/591ecec3c6adc1cdb70f00165a57baa3d7f75d0d30fa767213c36496bdcc6be2b2e6a3edbf7c04f7d726a1b17dcfb5e7feb2136b04b17c9ccb769894b970f365
+  languageName: node
+  linkType: hard
+
+"react-insta-stories@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "react-insta-stories@npm:2.7.0"
+  peerDependencies:
+    react: ">=16.8.2"
+  checksum: 10c0/ed43f2c2c6513979f861c95b1b161fe071c3637e4941652781411ca6dc2f8cd6023a24043c93268d9029e9ce0471cbc88ba6eb023c4ce9e6c4129f5fa1747a01
   languageName: node
   linkType: hard
 
