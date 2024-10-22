@@ -16,7 +16,7 @@ export default async function CategoryPage({
   return (
     <>
       <Container className="mt-10 pb-14">
-        <Title text={decodedCategory} size="lg" className="font-extrabold" />
+        <Title text={decodedCategory} size="lg" className="font-extrabold mb-2" />
 
         <div className="flex gap-[80px]">
           {/* Фильтрация */}
@@ -28,7 +28,7 @@ export default async function CategoryPage({
 
           {/* Список товаров */}
             <div className="flex-1">
-              <div className="flex flex-wrap gap-11">
+              <div className="flex flex-wrap gap-12">
                 {categoryProducts?.map((product) => (
                   <ProductCard {...product} key={product.id} />
                 ))}

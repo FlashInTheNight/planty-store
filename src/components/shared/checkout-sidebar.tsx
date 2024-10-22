@@ -1,13 +1,10 @@
 import React from "react";
 import { WhiteBlock } from "./white-block";
 import { CheckoutItemDetails } from "./checkout-item-details";
-import { ArrowRight, Package, Percent, Truck } from "lucide-react";
+import { ArrowRight, Package } from "lucide-react";
 import { Skeleton } from "../ui";
 import { cn } from "@/lib/utils";
 import { CustomButton } from "./custom-buttom";
-
-const VAT = 15;
-const DELIVERY_PRICE = 250;
 
 interface Props {
   totalAmount: number;
@@ -20,9 +17,6 @@ export const CheckoutSidebar: React.FC<Props> = ({
   loading,
   className,
 }) => {
-  const vatPrice = (totalAmount * VAT) / 100;
-  const totalPrice = totalAmount + DELIVERY_PRICE + vatPrice;
-
   return (
     <WhiteBlock className={cn("p-6 sticky top-4", className)}>
       <div className="flex flex-col gap-1">
@@ -31,7 +25,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
           <Skeleton className="h-11 w-48" />
         ) : (
           <span className="h-11 text-[34px] font-extrabold">
-            {totalPrice} ₽
+            {totalAmount} ₽
           </span>
         )}
       </div>
@@ -51,37 +45,6 @@ export const CheckoutSidebar: React.FC<Props> = ({
           )
         }
       />
-      <CheckoutItemDetails
-        title={
-          <div className="flex items-center">
-            <Percent size={18} className="mr-2 text-gray-400" />
-            Налоги:
-          </div>
-        }
-        value={
-          loading ? (
-            <Skeleton className="h-6 w-16 rounded-[6px]" />
-          ) : (
-            `${vatPrice} ₽`
-          )
-        }
-      />
-      <CheckoutItemDetails
-        title={
-          <div className="flex items-center">
-            <Truck size={18} className="mr-2 text-gray-400" />
-            Доставка:
-          </div>
-        }
-        value={
-          loading ? (
-            <Skeleton className="h-6 w-16 rounded-[6px]" />
-          ) : (
-            `${DELIVERY_PRICE} ₽`
-          )
-        }
-      />
-
       <CustomButton
         loading={loading}
         type="submit"
