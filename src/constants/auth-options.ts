@@ -1,37 +1,26 @@
-import { AuthOptions } from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
-import CredentialsProvider from 'next-auth/providers/credentials';
-// import GoogleProvider from 'next-auth/providers/google';
+import { AuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import YandexProvider from "next-auth/providers/yandex";
 
-import { prisma } from '@/prisma/prisma-client';
-// import { compare, hashSync } from 'bcrypt';
-import * as argon from 'argon2';
-import { UserRole } from '@prisma/client';
+import { prisma } from "@/prisma/prisma-client";
+import * as argon from "argon2";
 
 export const authOptions: AuthOptions = {
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID || '',
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-    // }),
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
-      profile(profile) {
-        return {
-          id: profile.id,
-          name: profile.name || profile.login,
-          email: profile.email,
-          image: profile.avatar_url,
-          role: 'USER' as UserRole,
-        };
-      },
+    YandexProvider({
+      clientId: process.env.YANDEX_CLIENT_ID as string,
+      clientSecret: process.env.YANDEX_CLIENT_SECRET as string,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
-        email: { label: 'Email', type: 'text' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials) {
@@ -50,7 +39,10 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        const isPasswordValid = await argon.verify(findUser.password, credentials.password);
+        const isPasswordValid = await argon.verify(
+          findUser.password,
+          credentials.password
+        );
 
         if (!isPasswordValid) {
           return null;
@@ -71,12 +63,12 @@ export const authOptions: AuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   callbacks: {
     async signIn({ user, account }) {
       try {
-        if (account?.provider === 'credentials') {
+        if (account?.provider === "credentials") {
           return true;
         }
 
@@ -87,7 +79,10 @@ export const authOptions: AuthOptions = {
         const findUser = await prisma.user.findFirst({
           where: {
             OR: [
-              { provider: account?.provider, providerId: account?.providerAccountId },
+              {
+                provider: account?.provider,
+                providerId: account?.providerAccountId,
+              },
               { email: user.email },
             ],
           },
@@ -110,8 +105,7 @@ export const authOptions: AuthOptions = {
         await prisma.user.create({
           data: {
             email: user.email,
-            fullName: user.name || 'User #' + user.id,
-            // password: hashSync(user.id.toString(), 10),
+            fullName: user.name || "User #" + user.id,
             password: await argon.hash(user.id.toString()),
             verified: new Date(),
             provider: account?.provider,
@@ -121,7 +115,7 @@ export const authOptions: AuthOptions = {
 
         return true;
       } catch (error) {
-        console.error('Error [SIGNIN]', error);
+        console.error("Error [SIGNIN]", error);
         return false;
       }
     },
