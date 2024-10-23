@@ -29,6 +29,7 @@ export const ProductCard: React.FC<Props> = ({
 
   const { loading, onSubmit } = useBtnCartLogic(id, name);
 
+
   return (
     <div
       className={cn(
