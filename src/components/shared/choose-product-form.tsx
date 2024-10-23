@@ -34,7 +34,6 @@ export const ChooseProductForm: React.FC<Props> = ({
   description,
   discountPrice,
 }) => {
-  console.log("description in ChooseProductForm: ", description);
   return (
     <div className={cn(className, "flex flex-1 h-[600px]")}>
       <CarouselProduct imageUrls={imageUrl} />

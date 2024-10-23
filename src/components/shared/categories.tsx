@@ -13,7 +13,6 @@ interface Props {
 
 export const Categories: React.FC<Props> = ({ items, className }) => {
   const params = useParams<{ category: string }>();
-  console.log("params in Categories: ", params);
   const decodedCategory = decodeURIComponent(params?.category || "");
 
   return (

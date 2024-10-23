@@ -17,8 +17,6 @@ export const Filters: React.FC<Props> = ({ className, currentParam }) => {
     categoryName: currentParam,
   });
 
-  console.log("loading in Filters: ", loading);
-
   const filters = useFilters();
 
   useQueryFilters(filters);

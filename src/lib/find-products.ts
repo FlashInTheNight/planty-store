@@ -34,9 +34,6 @@ export const findProducts = async (
   const minPrice = Number(searchParams.priceFrom) || DEFAULT_MIN_PRICE;
   const maxPrice = Number(searchParams.priceTo) || DEFAULT_MAX_PRICE;
 
-  console.log("minPrice", minPrice);
-  console.log("maxPrice", maxPrice);
-
   const filterConditions = [
     // Фильтр по брендам
     brands && brands.length

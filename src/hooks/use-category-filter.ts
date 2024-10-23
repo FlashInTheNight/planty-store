@@ -32,8 +32,6 @@ export const useCategoryFilter = ({
         const transformedCategoryFilters =
           transformCategoryFilters(apiCategoryFilters);
 
-        console.log("transformedCategoryFilters", transformedCategoryFilters);
-
         // Устанавливаем преобразованные данные в состояние
         setCategoryFilters(transformedCategoryFilters);
       } catch (error) {

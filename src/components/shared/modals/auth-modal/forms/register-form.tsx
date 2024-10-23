@@ -25,7 +25,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
     },
   });
 
-  console.log(onClickLogin);
+  onClickLogin?.();
 
   const onSubmit = async (data: TFormRegisterValues) => {
     try {
