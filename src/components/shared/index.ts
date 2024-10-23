@@ -20,6 +20,7 @@ export { Providers } from "./providers";
 export { CheckoutSidebar } from "./checkout-sidebar";
 export { Stories } from "./stories";
 export { ProfileForm } from "./profile-form";
+export { InfoBlock } from "./info-block";
 
 export * from "./checkout";
 export * from "./modals";
