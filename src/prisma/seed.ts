@@ -1,5 +1,5 @@
 import { prisma } from "./prisma-client";
-import * as argon from "argon2";
+// import * as argon from "argon2";
 import {
   categories,
   descriptions,
@@ -23,14 +23,16 @@ async function up() {
       {
         fullName: "User Test",
         email: "user@test.ru",
-        password: await argon.hash("111111"),
+        // password: await argon.hash("111111"),
+        password: "111111",
         verified: new Date(),
         role: "USER",
       },
       {
         fullName: "Admin Admin",
         email: "admin@test.ru",
-        password: await argon.hash("222222"),
+        // password: await argon.hash("222222"),
+        password: "222222",
         verified: new Date(),
         role: "ADMIN",
       },

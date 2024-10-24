@@ -7,7 +7,7 @@ import { CheckoutFormValues } from "@/constants";
 import { createPayment, sendEmail } from "@/lib";
 import { getUserSession } from "@/lib/get-user-session";
 import { OrderStatus, Prisma } from "@prisma/client";
-import * as argon from "argon2";
+// import * as argon from "argon2";
 
 import { cookies } from "next/headers";
 
@@ -136,7 +136,8 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
         email: body.email,
         password: body.password
           ? // ? hashSync(body.password as string, 10)
-            await argon.hash(body.password as string)
+            // await argon.hash(body.password as string)
+            body.password
           : findUser?.password,
       },
     });
@@ -166,7 +167,8 @@ export async function registerUser(body: Prisma.UserCreateInput) {
       data: {
         fullName: body.fullName,
         email: body.email,
-        password: await argon.hash(body.password),
+        // password: await argon.hash(body.password),
+        password: body.password,
       },
     });
 

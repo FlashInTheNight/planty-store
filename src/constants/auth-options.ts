@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import YandexProvider from "next-auth/providers/yandex";
 
 import { prisma } from "@/prisma/prisma-client";
-import * as argon from "argon2";
+// import * as argon from "argon2";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -39,10 +39,11 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        const isPasswordValid = await argon.verify(
-          findUser.password,
-          credentials.password
-        );
+        // const isPasswordValid = await argon.verify(
+        //   findUser.password,
+        //   credentials.password
+        // );
+        const isPasswordValid = findUser.password === credentials.password;
 
         if (!isPasswordValid) {
           return null;
@@ -106,7 +107,8 @@ export const authOptions: AuthOptions = {
           data: {
             email: user.email,
             fullName: user.name || "User #" + user.id,
-            password: await argon.hash(user.id.toString()),
+            // password: await argon.hash(user.id.toString()),
+            password: user.id.toString(),
             verified: new Date(),
             provider: account?.provider,
             providerId: account?.providerAccountId,
