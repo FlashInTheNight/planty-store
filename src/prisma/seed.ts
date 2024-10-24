@@ -8,6 +8,7 @@ import {
   filters,
   categoryFilters,
 } from "./constants";
+import bcrypt from "bcryptjs";
 
 const randomDecimalNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10;
@@ -24,7 +25,8 @@ async function up() {
         fullName: "User Test",
         email: "user@test.ru",
         // password: await argon.hash("111111"),
-        password: "111111",
+        // password: "111111",
+        password: bcrypt.hashSync("111111", 10),
         verified: new Date(),
         role: "USER",
       },
@@ -32,7 +34,8 @@ async function up() {
         fullName: "Admin Admin",
         email: "admin@test.ru",
         // password: await argon.hash("222222"),
-        password: "222222",
+        // password: "222222",
+        password: bcrypt.hashSync("222222", 10),
         verified: new Date(),
         role: "ADMIN",
       },

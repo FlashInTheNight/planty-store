@@ -5,6 +5,7 @@ import YandexProvider from "next-auth/providers/yandex";
 
 import { prisma } from "@/prisma/prisma-client";
 // import * as argon from "argon2";
+import bcrypt from "bcryptjs";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -43,7 +44,11 @@ export const authOptions: AuthOptions = {
         //   findUser.password,
         //   credentials.password
         // );
-        const isPasswordValid = findUser.password === credentials.password;
+        // const isPasswordValid = findUser.password === credentials.password;
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          findUser.password
+        );
 
         if (!isPasswordValid) {
           return null;
@@ -108,7 +113,8 @@ export const authOptions: AuthOptions = {
             email: user.email,
             fullName: user.name || "User #" + user.id,
             // password: await argon.hash(user.id.toString()),
-            password: user.id.toString(),
+            // password: user.id.toString(),
+            password: bcrypt.hashSync(user.id.toString(), 10),
             verified: new Date(),
             provider: account?.provider,
             providerId: account?.providerAccountId,

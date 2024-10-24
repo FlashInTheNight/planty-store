@@ -8,6 +8,7 @@ import { createPayment, sendEmail } from "@/lib";
 import { getUserSession } from "@/lib/get-user-session";
 import { OrderStatus, Prisma } from "@prisma/client";
 // import * as argon from "argon2";
+import bcrypt from "bcryptjs";
 
 import { cookies } from "next/headers";
 
@@ -137,7 +138,7 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
         password: body.password
           ? // ? hashSync(body.password as string, 10)
             // await argon.hash(body.password as string)
-            body.password
+            bcrypt.hashSync(body.password as string, 10)
           : findUser?.password,
       },
     });
@@ -168,7 +169,8 @@ export async function registerUser(body: Prisma.UserCreateInput) {
         fullName: body.fullName,
         email: body.email,
         // password: await argon.hash(body.password),
-        password: body.password,
+        password: bcrypt.hashSync(body.password as string, 10),
+        // password: body.password,
       },
     });
 
