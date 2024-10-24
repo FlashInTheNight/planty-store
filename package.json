@@ -10,7 +10,7 @@
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio",
     "prisma:seed": "prisma db seed",
-    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate",
     "prisma:seed:dev": "dotenv -e .env.development -- npx prisma db seed",
     "prisma:push:dev": "dotenv -e .env.development -- npx prisma db push",
     "prisma:studio:dev": "dotenv -e .env.development -- npx prisma studio"
